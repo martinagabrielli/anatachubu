@@ -1,0 +1,178 @@
+%light {
+    font-weight: 300;
+}
+
+%regular {
+    font-weight: 400;
+}
+
+%medium {
+    font-weight: 500;
+}
+
+%semibold {
+    font-weight: 600;
+}
+
+%bold {
+    font-weight: 700;
+}
+
+%extrabold {
+    font-weight: 800;
+}
+
+.light {
+    @extend %light;
+}
+
+.regular {
+    @extend %regular;
+}
+
+.medium {
+    @extend %medium;
+}
+
+.semibold {
+    @extend %semibold;
+}
+
+.bold {
+    @extend %bold;
+}
+
+.extrabold {
+    @extend %extrabold;
+}
+
+//* Headings
+%h1 {
+    @include typography(3.4rem, 4rem, $primary-font);
+    @extend %bold;
+    
+    @include respond('lg') {
+        @include typography(2.4rem, 3rem, $primary-font);
+    }
+}
+
+%h2 {
+    @include typography(3rem, 3.6rem, $primary-font);
+    @extend %bold;
+
+    @include respond('lg') {
+        @include typography(2.4rem, 3rem, $primary-font);
+    }
+}
+
+%h3 {
+    @include typography(2.4rem, 3rem, $primary-font);
+    @extend %bold;
+
+    @include respond('lg') {
+        @include typography(1.8rem, 2.8rem, $primary-font);
+    }
+}
+
+%h4 {
+    @include typography(2.2rem, 3.4rem, $primary-font);
+    @extend %bold;
+
+    @include respond('lg') {
+        @include typography(1.8rem, 2.8rem, $primary-font);
+    }
+}
+
+%h5 {
+    @include typography(2.3rem, 3.2rem, $primary-font);
+    @extend %semibold;
+}
+
+%h6 {
+    @include typography(2rem, 3rem, $primary-font);
+    @extend %semibold;
+}
+
+%body-1 {
+    @include typography(1.8rem, 3rem, $primary-font);
+    @extend %regular;
+
+    @include respond('lg') {
+        @include typography(1.6rem, 2.4rem, $primary-font);
+    }
+}
+
+%body-2 {
+    @include typography(1.6rem, 3rem, $primary-font);
+    @extend %regular;
+
+    @include respond('lg') {
+        @include typography(1.6rem, 2.4rem, $primary-font);
+    }
+}
+
+%caption {
+    @include typography(1.5rem, 2.5rem, $primary-font);
+    @extend %medium;
+    
+    @include respond('lg') {
+        @include typography(1.4rem, 2.3rem, $primary-font);
+    }
+}
+
+%nav-item {
+    @include typography(1.8rem, 2.4rem, $primary-font);
+    @extend %medium;
+}
+
+%button {
+    @include typography(1.8rem, 2.8rem, $primary-font);
+    @extend %medium;
+}
+
+//* Typography
+h1,
+.h1 {
+    @extend %h1;
+}
+
+h2,
+.h2 {
+    @extend %h2;
+}
+
+h3,
+.h3 {
+    @extend %h3;
+}
+
+h4,
+.h4 {
+    @extend %h4;
+}
+
+h5,
+.h5 {
+    @extend %h5;
+}
+
+h6,
+.h6 {
+    @extend %h6;
+}
+
+.body-1 {
+    @extend %body-1;
+}
+
+.body-2 {
+    @extend %body-2;
+}
+
+.caption {
+    @extend %caption;
+}
+
+.nav-item {
+    @extend %nav-item;
+}
