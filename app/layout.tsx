@@ -5,8 +5,8 @@ import "./globals.css";
 import './scss/index.scss';
 
 const roboto = Roboto({
-  weight: ['400', '700'], // Specify the font weights you need
-  subsets: ['latin'],     // Subsets to support
+  weight: ['400', '700'],
+  subsets: ['latin'],
   variable: "--font-roboto",
 });
 
