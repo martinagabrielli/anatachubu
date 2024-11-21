@@ -1,8 +1,10 @@
-import type { Metadata } from "next";
+'use client';
+
 import localFont from "next/font/local";
 import { Roboto } from 'next/font/google';
 import "./globals.css";
 import './scss/index.scss';
+import { SessionProvider } from 'next-auth/react';
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -10,18 +12,19 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-export const metadata: Metadata = {
-  title: "Anatachubu",
-  description: "The best video platform",
-};
-
-export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
         <div className="flex-grow">
           <div className="container mx-auto px-4 py-8">
-            {children}
+            <SessionProvider>
+              {children}
+            </SessionProvider>
           </div>
         </div>
         <footer className="text-center">
