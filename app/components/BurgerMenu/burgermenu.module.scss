@@ -1,0 +1,33 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/functions' as *;
+
+.burgerMenu {
+    width: 4.5rem;
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+
+    span {
+        display: block;
+        width: 80%;
+        height: 2px;
+        background-color: var(--foreground);
+
+        &:not(:last-child) {
+            margin-bottom: .5rem;
+        }
+    }
+
+    &:hover {
+        background-color: color(lightgrey);
+        border-radius: 50%;
+
+        span {
+            background-color: var(--background);
+        }
+    }
+}

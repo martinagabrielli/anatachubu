@@ -1,4 +1,9 @@
-// Function to get color from the $colors map
+@use './variables' as *;
+
 @function color($name) {
-    @return map-get($colors, $name);
+    @if map-has-key($colors, '#{$name}') {
+        @return map-get($colors, '#{$name}');
+    } @else {
+        @error "Color `#{$name}` not found in the colors map!";
+    }
 }

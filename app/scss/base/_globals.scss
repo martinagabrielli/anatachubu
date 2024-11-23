@@ -1,12 +1,91 @@
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
 // Loop through the $colors map and generate background color classes
 @each $color-name, $color-value in $colors {
     .bg-#{$color-name} {
       background-color: $color-value;
     }
 }
+
 // Loop through the $colors map and generate color classes
 @each $color-name, $color-value in $colors {
     .#{$color-name} {
         color: $color-value;
     }
+}
+
+// Classes Using Font Weight Mixins
+.light {
+    @include light;
+}
+
+.regular {
+    @include regular;
+}
+
+.medium {
+    @include medium;
+}
+
+.semibold {
+    @include semibold;
+}
+
+.bold {
+    @include bold;
+}
+
+.extrabold {
+    @include extrabold;
+}
+
+h1,
+.h1 {
+    @include h1;
+}
+
+h2,
+.h2 {
+    @include h2;
+}
+
+h3,
+.h3 {
+    @include h3;
+}
+
+h4,
+.h4 {
+    @include h4;
+}
+
+h5,
+.h5 {
+    @include h5;
+}
+
+h6,
+.h6 {
+    @include h6;
+}
+
+.body-1 {
+    @include body-1;
+}
+
+.body-2 {
+    @include body-2;
+}
+
+.caption {
+    @include caption;
+}
+
+.nav-item {
+    @include nav-item;
+}
+
+.button {
+    @include button;
 }

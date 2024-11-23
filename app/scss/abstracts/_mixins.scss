@@ -27,3 +27,116 @@
     line-height: get-line-height($font-size, $line-height);
     @if ($font-family) { font-family: $font-family; }
 }
+
+
+///////
+
+// Font Weight Mixins
+@mixin light {
+  font-weight: 300;
+}
+
+@mixin regular {
+  font-weight: 400;
+}
+
+@mixin medium {
+  font-weight: 500;
+}
+
+@mixin semibold {
+  font-weight: 600;
+}
+
+@mixin bold {
+  font-weight: 700;
+}
+
+@mixin extrabold {
+  font-weight: 800;
+}
+
+//* Headings Mixins
+@mixin h1 {
+  @include typography(3.4rem, 4rem, $primary-font);
+  @include bold;
+
+  @include respond('lg') {
+      @include typography(2.4rem, 3rem, $primary-font);
+  }
+}
+
+@mixin h2 {
+  @include typography(3rem, 3.6rem, $primary-font);
+  @include bold;
+
+  @include respond('lg') {
+      @include typography(2.4rem, 3rem, $primary-font);
+  }
+}
+
+@mixin h3 {
+  @include typography(2.4rem, 3rem, $primary-font);
+  @include bold;
+
+  @include respond('lg') {
+      @include typography(1.8rem, 2.8rem, $primary-font);
+  }
+}
+
+@mixin h4 {
+  @include typography(2.2rem, 3.4rem, $primary-font);
+  @include bold;
+
+  @include respond('lg') {
+      @include typography(1.8rem, 2.8rem, $primary-font);
+  }
+}
+
+@mixin h5 {
+  @include typography(2.3rem, 3.2rem, $primary-font);
+  @include semibold;
+}
+
+@mixin h6 {
+  @include typography(2rem, 3rem, $primary-font);
+  @include semibold;
+}
+
+//* Body Text Mixins
+@mixin body-1 {
+  @include typography(1.8rem, 3rem, $primary-font);
+  @include regular;
+
+  @include respond('lg') {
+      @include typography(1.6rem, 2.4rem, $primary-font);
+  }
+}
+
+@mixin body-2 {
+  @include typography(1.6rem, 3rem, $primary-font);
+  @include regular;
+
+  @include respond('lg') {
+      @include typography(1.6rem, 2.4rem, $primary-font);
+  }
+}
+
+@mixin caption {
+  @include typography(1.5rem, 2.5rem, $primary-font);
+  @include medium;
+
+  @include respond('lg') {
+      @include typography(1.4rem, 2.3rem, $primary-font);
+  }
+}
+
+@mixin nav-item {
+  @include typography(1.8rem, 2.4rem, $primary-font);
+  @include medium;
+}
+
+@mixin button {
+  @include typography(1.8rem, 2.8rem, $primary-font);
+  @include medium;
+}

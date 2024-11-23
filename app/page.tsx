@@ -1,20 +1,10 @@
 'use client';
-
-import { signIn, signOut, useSession } from 'next-auth/react';
+import Header from './components/Header/Header';
 
 export default function Home() {
-  const { data: session } = useSession();
-
   return (
-    <div>
-      {!session ? (
-        <button onClick={() => signIn('google')}>Sign In with Google</button>
-      ) : (
-        <div>
-          <p>Welcome, {session.user?.name}</p>
-          <button onClick={() => signOut()}>Sign Out</button>
-        </div>
-      )}
+    <div className="home">
+      <Header />
     </div>
   );
 }

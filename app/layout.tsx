@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { Roboto } from 'next/font/google';
 import "./globals.css";
 import './scss/index.scss';
+import "./scss/base/_globals.scss";
 import { SessionProvider } from 'next-auth/react';
 
 const roboto = Roboto({

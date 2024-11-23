@@ -2,11 +2,15 @@
 $primary: #ff0035;
 $secondary: #111;
 $white: #fff;
+$lightgrey: #d3d3d3;
+$grey: #222;
 
 $colors: (
   'primary': $primary,
   'secondary': $secondary,
   'white': $white,
+  'lightgrey': $lightgrey,
+  'grey': $grey,
 );
 
 //* Fonts
