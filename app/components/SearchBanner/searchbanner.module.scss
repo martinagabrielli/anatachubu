@@ -1,0 +1,16 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/functions' as *;
+
+.searchBanner {
+    width: fit-content;
+    border: 1px solid var(--foreground);
+    padding: 2rem;
+    border-radius: 10px;
+    margin: auto;
+    text-align: center;
+    background-color: color('grey');
+
+    &__heading {
+        margin-bottom: 1.5rem;
+    }
+}
