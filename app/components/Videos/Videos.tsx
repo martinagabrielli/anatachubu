@@ -16,7 +16,7 @@ interface VideosProps {
 
 export default function Videos({ videos }: VideosProps) {
   if (!videos || videos.length === 0) {
-    return <p>No videos available.</p>;
+    return;
   }
 
   return (
@@ -24,7 +24,6 @@ export default function Videos({ videos }: VideosProps) {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
         {videos.map((video) => (
           <>
-          {console.log(video)}
           <div key={video.id} className="video-card bg-white rounded shadow overflow-hidden p-4">
             <h3 className="text-lg font-semibold mb-2">{video.title}</h3>
             <mux-player
