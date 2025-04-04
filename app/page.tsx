@@ -5,8 +5,6 @@ import Header from './components/Header/Header';
 import SearchBanner from './components/SearchBanner/SearchBanner';
 import Videos from './components/Videos/Videos';
 import { useEffect, useState } from 'react';
-import { log } from 'console';
-
 interface Video {
   id: string;
   title: string;

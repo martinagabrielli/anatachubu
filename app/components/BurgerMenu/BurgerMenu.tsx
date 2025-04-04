@@ -1,8 +1,8 @@
 import styles from './burgermenu.module.scss';
 
-export default function BurgerMenu() {
+export default function BurgerMenu({onClick}: { onClick: () => void }) {
   return (
-    <div className={styles.burgerMenu}>
+    <div onClick={onClick} className={styles.burgerMenu}>
         <span></span>
         <span></span>
         <span></span>
