@@ -17,13 +17,14 @@ export default async function handler(req, res) {
     const assetsResponse = await mux.video.assets.list({
       limit: 10,
     });
-
+    
     const videos = assetsResponse.data.map((asset) => ({
       id: asset.id,
-      title: asset.name || 'Untitled',
+      title: asset.meta.title || 'Untitled',
       playbackId: asset.playback_ids?.[0]?.id,
     }));
-
+    
+    console.log(assetsResponse.data);
     res.status(200).json({ videos });
   } catch (error) {
     console.error('Error fetching videos from Mux:', error);

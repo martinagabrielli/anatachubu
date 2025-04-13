@@ -3,6 +3,12 @@
 @theme {
   --color-background: #fff;
   --color-foreground: #111;
+  --container-xs: 475px;
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
 }
 
 @media (prefers-color-scheme: dark) {
