@@ -15,7 +15,7 @@
         display: block;
         width: 80%;
         height: 2px;
-        background-color: var(--foreground);
+        background-color: var(--color-foreground);
 
         &:not(:last-child) {
             margin-bottom: .5rem;
@@ -27,7 +27,7 @@
         border-radius: 50%;
 
         span {
-            background-color: var(--background);
+            background-color: var(--color-background);
         }
     }
 }

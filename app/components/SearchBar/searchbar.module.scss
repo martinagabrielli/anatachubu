@@ -4,7 +4,7 @@
 .searchBar {
     position: relative;
     width: 50rem;
-    border: 1px solid var(--foreground);
+    border: 1px solid var(--color-foreground);
     border-radius: 2rem;
     
     input {
@@ -24,11 +24,11 @@
         top: 0;
         right: 0;
         bottom: 0;
-        color: var(--foreground);
+        color: var(--color-foreground);
         background: transparent;
         border-top-right-radius: 2rem;
         border-bottom-right-radius: 2rem;
-        border-left: 1px solid var(--foreground);
+        border-left: 1px solid var(--color-foreground);
         padding: 0 1.5rem;
 
         &:hover {
@@ -47,7 +47,7 @@
                 right: -2px;
                 width: .5rem;
                 height: 1px;
-                background-color: var(--foreground);
+                background-color: var(--color-foreground);
                 transform: rotate(45deg);
             }
 
