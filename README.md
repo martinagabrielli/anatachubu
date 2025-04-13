@@ -28,7 +28,7 @@ Anatachubu is a simplified YouTube clone built using **Next.js** and **React**. 
 │   │   ├── Footer
 │   │   ├── Header
 │   │   ├── Logo
-│   │   ├── SearchBanner
+│   │   ├── Banner
 │   │   ├── SearchBar
 │   │   ├── Videos
 │   ├── fonts

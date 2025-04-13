@@ -1,7 +1,7 @@
 @use '../../scss/abstracts/variables' as *;
 @use '../../scss/abstracts/functions' as *;
 
-.searchBanner {
+.banner {
     width: fit-content;
     border: 1px solid var(--color-foreground);
     padding: 2rem;

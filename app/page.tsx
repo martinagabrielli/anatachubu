@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react';
 import Header from './components/Header/Header';
-import SearchBanner from './components/SearchBanner/SearchBanner';
+import Banner from './components/Banner/Banner';
 import Videos from './components/Videos/Videos';
 import { useEffect, useState } from 'react';
 interface Video {
@@ -28,7 +28,6 @@ export default function Home() {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        console.log(data)
         setVideos(data.videos);
       } catch (err) {
         console.error('Failed to fetch videos:', err);
@@ -46,7 +45,7 @@ export default function Home() {
   return (
     <div className="home">
       <Header onSearch={setSearchQuery} />
-      <SearchBanner />
+      {!isLoggedIn && <Banner />}
       {isLoggedIn && (
         <>
           {loading && <p>Loading videos...</p>}
