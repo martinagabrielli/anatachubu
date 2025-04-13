@@ -17,16 +17,18 @@ export default function Home() {
   const [videos, setVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await fetch('/api/videos');
+        const response = await fetch(`/api/videos?search=${encodeURIComponent(searchQuery)}`);
         if (!response.ok) {
           console.log(response)
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        console.log(data)
         setVideos(data.videos);
       } catch (err) {
         console.error('Failed to fetch videos:', err);
@@ -39,11 +41,11 @@ export default function Home() {
     if (isLoggedIn) {
       fetchVideos();
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, searchQuery]);
 
   return (
     <div className="home">
-      <Header />
+      <Header onSearch={setSearchQuery} />
       <SearchBanner />
       {isLoggedIn && (
         <>

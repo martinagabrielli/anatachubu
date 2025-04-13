@@ -10,21 +10,24 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Check if mux is initialized correctly
-    console.log('Mux instance:', mux);
+    const searchQuery = req.query.search?.toLowerCase() || '';
+    console.log(searchQuery)
 
     // Fetch assets using Mux SDK
     const assetsResponse = await mux.video.assets.list({
       limit: 10,
     });
+
+    const filteredAssets = assetsResponse.data.filter(asset =>
+      asset?.meta?.title?.toLowerCase().includes(searchQuery)
+    );
     
-    const videos = assetsResponse.data.map((asset) => ({
+    const videos = filteredAssets.map((asset) => ({
       id: asset.id,
       title: asset.meta.title || 'Untitled',
       playbackId: asset.playback_ids?.[0]?.id,
     }));
     
-    console.log(assetsResponse.data);
     res.status(200).json({ videos });
   } catch (error) {
     console.error('Error fetching videos from Mux:', error);

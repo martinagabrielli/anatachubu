@@ -6,22 +6,19 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ onSearch }: SearchBarProps) {
-  const [query, setQuery] = useState('');
+  const [input, setInput] = useState('');
 
-  const handleInputChange = (e) => {
-    setQuery(e.target.value);
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    onSearch(query);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInput(value);
+    onSearch(value);
   };
 
   return (
-    <form className={styles.searchBar} onSubmit={handleFormSubmit}>
+    <form className={styles.searchBar}>
       <input
         type="search"
-        value={query}
+        value={input}
         onChange={handleInputChange}
         placeholder="Search..."
         aria-label="Search"

@@ -5,8 +5,11 @@ import SearchBar from "../SearchBar/SearchBar";
 import styles from './header.module.scss';
 import { useState } from "react";
 import SideBar from "../SideBar/SideBar";
+interface HeaderProps {
+  onSearch: (query: string) => void;
+}
 
-export default function Header() {
+export default function Header({onSearch}: HeaderProps) {
   const [menu, setMenu] = useState<Boolean>(false);
   const handleMenuToggle = () => {
       setMenu(prevMenu => !prevMenu);
@@ -22,9 +25,7 @@ export default function Header() {
             </div>
             <Logo />
         </div>
-        <SearchBar onSearch={function (query: string): void {
-        throw new Error("Function not implemented.");
-      } } />
+        <SearchBar onSearch={onSearch} />
         <SideBar onClick={handleMenuToggle} menu={menuClass} />
         <Auth />
     </div>
