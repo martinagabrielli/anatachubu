@@ -19,7 +19,7 @@ export default function SideBar({onClick, menu}: SideBarProps) {
                     <div className="flex flex-col justify-start mt-10 px-4">
                         <ul className="d-flex space-y-2 body-1">
                             <Link href="/">Home</Link>
-                            <li>Favourites</li>
+                            <Link href="/favourites">Favourites</Link>
                         </ul>
                     </div>
                 </div>

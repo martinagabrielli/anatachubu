@@ -3,7 +3,7 @@
 import React from 'react';
 import '@mux/mux-player';
 import styles from './videos.module.scss';
-
+import FavouriteButton from '../FavouriteButton/FavouriteButton';
 interface Video {
     id: string;
     title: string;
@@ -39,6 +39,7 @@ export default function Videos({ videos }: VideosProps) {
               style={{ width: '100%', height: 'auto' }}
             ></mux-player>
               <h3 className="text-lg font-semibold mb-2 pt-5">{video.title}</h3>
+              <FavouriteButton videoId={video.id} />
           </div>
           </>
         ))}
