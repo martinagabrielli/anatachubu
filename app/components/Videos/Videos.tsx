@@ -30,6 +30,7 @@ export default function Videos({ videos }: VideosProps) {
           <>
           <div key={video.id} className="video-card bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8">
             <mux-player
+              id={video.id}
               stream-type="on-demand"
               playback-id={video.playbackId}
               poster={`https://image.mux.com/${video.playbackId}/thumbnail.jpg`}

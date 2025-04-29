@@ -1,59 +1,112 @@
-// app/favourites/page.tsx
-
-"use client";
+'use client';
 
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase-client";
 import { useSession } from "next-auth/react";
+import FavouriteButton from "../components/FavouriteButton/FavouriteButton"; // Adjust the path as necessary
+import '@mux/mux-player';
 
-interface Favourite {
+interface Video {
   id: string;
-  video_id: string;
+  title: string;
+  mux_asset_id: string;
 }
 
 export default function FavouritesPage() {
   const { data: session, status } = useSession();
-  const [favourites, setFavourites] = useState<Favourite[]>([]);
+  const [favouriteVideos, setFavouriteVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchFavourites = async () => {
-      if (!session) return;
-
-      const { data, error } = await supabase
-        .from("favourites")
-        .select("id, video_id")
-        .eq("user_id", session.user?.email); // Or user id depending on your setup
-
-      if (error) {
-        console.error(error);
-      } else {
-        setFavourites(data || []);
+      console.log("🔍 Session object:", session);
+  
+      if (!session?.user?.email) {
+        console.warn("⚠️ No session or email, aborting fetch");
+        setLoading(false);
+        return;
       }
+  
+      // 1️⃣ Fetch favourite IDs
+      const { data: favs, error: favError } = await supabase
+        .from("favourites")
+        .select("video_id")
+        .eq("user_id", session.user.email);
+      console.log("📥 Favourites raw:", favs, favError);
+  
+      if (favError) {
+        console.error("❌ Error fetching favourites:", favError);
+        setLoading(false);
+        return;
+      }
+  
+      const videoIds = favs?.map((f) => f.video_id) || [];
+      console.log("🎬 Extracted video IDs:", videoIds);
+  
+      if (videoIds.length === 0) {
+        console.info("ℹ️ No favourite IDs found");
+        setFavouriteVideos([]);
+        setLoading(false);
+        return;
+      }
+        
+      // 2️⃣ Fetch metadata from videos table by playback_id
+      const { data: videoRecords, error: videoError } = await supabase
+        .from("videos")
+        .select("id, title, mux_asset_id")
+        .in("mux_asset_id", videoIds);
+
+      console.log("📀 Video records raw:", videoRecords, videoError);
+
+      if (videoError) {
+        console.error("❌ Error fetching video metadata:", videoError);
+        setLoading(false);
+        return;
+      }
+
+      const mapped = videoRecords.map((v) => ({
+        id: v.id,
+        title: v.title,
+        mux_asset_id: v.mux_asset_id,
+      }));
+
+      console.log("✅ Mapped videos array:", mapped);
+      setFavouriteVideos(mapped);
+
       setLoading(false);
     };
-
+  
     fetchFavourites();
   }, [session]);
+  
 
-  if (status === "loading" || loading) {
+  if (loading) {
     return <div className="text-center mt-10">Loading your favourites...</div>;
   }
 
-  if (!session) {
+  if (status !== "authenticated") {
     return <div className="text-center mt-10">You must be signed in to view your favourites.</div>;
   }
 
-  if (favourites.length === 0) {
+  if (favouriteVideos.length === 0) {
     return <div className="text-center mt-10">No favourites yet. Go love some videos! ❤️</div>;
   }
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-      {favourites.map((fav) => (
-        <div key={fav.id} className="bg-gray-800 p-4 rounded-lg shadow-md">
-          {/* Replace below with your real video thumbnail/title fetch if you have it */}
-          <p className="text-white font-semibold text-center">{fav.video_id}</p>
+      {favouriteVideos.map((video) => (
+        <div key={video.id} className="bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8">
+          <mux-player
+            stream-type="on-demand"
+            mux-asset-id={video.mux_asset_id}
+            poster={`https://image.mux.com/${video.mux_asset_id}/thumbnail.jpg`}
+            controls
+            primary-color="#fff"
+            title={video.title}
+            style={{ width: '100%', height: 'auto' }}
+          />
+          <h3 className="text-lg font-semibold mb-2 pt-5">{video.title}</h3>
+          <FavouriteButton videoId={video.mux_asset_id} />
         </div>
       ))}
     </div>
