@@ -29,6 +29,7 @@ export default function Home() {
         }
         const data = await response.json();
         setVideos(data.videos);
+        console.log('Other fucking data here:', data.videos)
       } catch (err) {
         console.error('Failed to fetch videos:', err);
         setError('Failed to load videos.');

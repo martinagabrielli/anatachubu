@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
 
   // Only handle successful asset creation
   if (payload.type === 'video.asset.ready') {
-    const { id: muxAssetId, playback_ids, created_at } = payload.data;
+    const { id: muxAssetId, playback_ids, meta } = payload.data;
     const playbackId = playback_ids?.[0]?.id;
 
     if (!playbackId || !muxAssetId) {
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
         {
           mux_asset_id: muxAssetId,
           playback_id: playbackId,
-          title: `Mux Video - ${new Date(created_at).toLocaleString()}`
+          title: meta.title || 'Untitled Video',
         }
       ])
       .select(); // This ensures we return the inserted row(s), including the generated UUID

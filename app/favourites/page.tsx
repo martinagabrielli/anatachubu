@@ -9,7 +9,7 @@ import '@mux/mux-player';
 interface Video {
   id: string;
   title: string;
-  mux_asset_id: string;
+  video_id: string;
 }
 
 export default function FavouritesPage() {
@@ -33,6 +33,7 @@ export default function FavouritesPage() {
         .select("video_id")
         .eq("user_id", session.user.email);
       console.log("📥 Favourites raw:", favs, favError);
+      console.log("The fucking data: ", favs);
   
       if (favError) {
         console.error("❌ Error fetching favourites:", favError);
@@ -53,8 +54,8 @@ export default function FavouritesPage() {
       // 2️⃣ Fetch metadata from videos table by playback_id
       const { data: videoRecords, error: videoError } = await supabase
         .from("videos")
-        .select("id, title, mux_asset_id")
-        .in("mux_asset_id", videoIds);
+        .select("id, title, playback_id")
+        .in("playback_id", videoIds);
 
       console.log("📀 Video records raw:", videoRecords, videoError);
 
@@ -67,7 +68,7 @@ export default function FavouritesPage() {
       const mapped = videoRecords.map((v) => ({
         id: v.id,
         title: v.title,
-        mux_asset_id: v.mux_asset_id,
+        video_id: v.playback_id,
       }));
 
       console.log("✅ Mapped videos array:", mapped);
@@ -98,15 +99,15 @@ export default function FavouritesPage() {
         <div key={video.id} className="bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8">
           <mux-player
             stream-type="on-demand"
-            mux-asset-id={video.mux_asset_id}
-            poster={`https://image.mux.com/${video.mux_asset_id}/thumbnail.jpg`}
+            playback-id={video.video_id}
+            poster={`https://image.mux.com/${video.video_id}/thumbnail.jpg`}
             controls
             primary-color="#fff"
             title={video.title}
             style={{ width: '100%', height: 'auto' }}
           />
           <h3 className="text-lg font-semibold mb-2 pt-5">{video.title}</h3>
-          <FavouriteButton videoId={video.mux_asset_id} />
+          <FavouriteButton videoId={video.video_id} />
         </div>
       ))}
     </div>

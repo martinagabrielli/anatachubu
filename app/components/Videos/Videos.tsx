@@ -29,6 +29,7 @@ export default function Videos({ videos }: VideosProps) {
         {videos.map((video) => (
           <>
           <div key={video.id} className="video-card bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8">
+            {console.log('The playback id:', video.playbackId)}
             <mux-player
               id={video.id}
               stream-type="on-demand"
@@ -40,7 +41,7 @@ export default function Videos({ videos }: VideosProps) {
               style={{ width: '100%', height: 'auto' }}
             ></mux-player>
               <h3 className="text-lg font-semibold mb-2 pt-5">{video.title}</h3>
-              <FavouriteButton videoId={video.id} />
+              <FavouriteButton videoId={video.playbackId} />
           </div>
           </>
         ))}
