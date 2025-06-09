@@ -5,7 +5,7 @@ import { supabase } from "../lib/supabase-client";
 import { useSession } from "next-auth/react";
 import FavouriteButton from "../components/FavouriteButton/FavouriteButton"; // Adjust the path as necessary
 import '@mux/mux-player';
-
+import Header from "../components/Header/Header"; // Adjust the path as necessary
 interface Video {
   id: string;
   title: string;
@@ -16,6 +16,7 @@ export default function FavouritesPage() {
   const { data: session, status } = useSession();
   const [favouriteVideos, setFavouriteVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     const fetchFavourites = async () => {
@@ -94,22 +95,25 @@ export default function FavouritesPage() {
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-      {favouriteVideos.map((video) => (
-        <div key={video.id} className="bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8">
-          <mux-player
-            stream-type="on-demand"
-            playback-id={video.video_id}
-            poster={`https://image.mux.com/${video.video_id}/thumbnail.jpg`}
-            controls
-            primary-color="#fff"
-            title={video.title}
-            style={{ width: '100%', height: 'auto' }}
-          />
-          <h3 className="text-lg font-semibold mb-2 pt-5">{video.title}</h3>
-          <FavouriteButton videoId={video.video_id} />
-        </div>
-      ))}
-    </div>
+    <>
+      <Header onSearch={setSearchQuery} />
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+        {favouriteVideos.map((video) => (
+          <div key={video.id} className="bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8">
+            <mux-player
+              stream-type="on-demand"
+              playback-id={video.video_id}
+              poster={`https://image.mux.com/${video.video_id}/thumbnail.jpg`}
+              controls
+              primary-color="#fff"
+              title={video.title}
+              style={{ width: '100%', height: 'auto' }}
+            />
+            <h3 className="text-lg font-semibold mb-2 pt-5">{video.title}</h3>
+            <FavouriteButton videoId={video.video_id} />
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
