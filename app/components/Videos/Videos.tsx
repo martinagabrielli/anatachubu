@@ -29,7 +29,6 @@ export default function Videos({ videos }: VideosProps) {
         {videos.map((video) => (
           <>
           <div key={video.id} className="video-card bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8">
-            {console.log('The playback id:', video.playbackId)}
             <mux-player
               id={video.id}
               stream-type="on-demand"

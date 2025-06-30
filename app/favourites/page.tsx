@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase-client";
 import { useSession } from "next-auth/react";
-import FavouriteButton from "../components/FavouriteButton/FavouriteButton"; // Adjust the path as necessary
+import FavouriteButton from "../components/FavouriteButton/FavouriteButton";
 import '@mux/mux-player';
-import Header from "../components/Header/Header"; // Adjust the path as necessary
+import Header from "../components/Header/Header";
 interface Video {
   id: string;
   title: string;
