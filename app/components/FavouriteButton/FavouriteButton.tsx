@@ -16,7 +16,7 @@ export default function FavouriteButton({ videoId }: FavouriteButtonProps) {
     const checkFavourite = async () => {
       if (!session?.user?.email) return;
 
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('favourites')
         .select('id')
         .eq('user_id', session.user.email)

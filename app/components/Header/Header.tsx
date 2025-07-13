@@ -10,7 +10,7 @@ interface HeaderProps {
 }
 
 export default function Header({onSearch}: HeaderProps) {
-  const [menu, setMenu] = useState<Boolean>(false);
+  const [menu, setMenu] = useState<boolean>(false);
   const handleMenuToggle = () => {
       setMenu(prevMenu => !prevMenu);
   };

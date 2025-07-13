@@ -16,7 +16,7 @@ export default function FavouritesPage() {
   const { data: session, status } = useSession();
   const [favouriteVideos, setFavouriteVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true);
-    const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     const fetchFavourites = async () => {
@@ -94,11 +94,15 @@ export default function FavouritesPage() {
     return <div className="text-center mt-10">No favourites yet. Go love some videos! ❤️</div>;
   }
 
+  const filteredVideos = favouriteVideos.filter((video) =>
+    video.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <>
       <Header onSearch={setSearchQuery} />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-        {favouriteVideos.map((video) => (
+        {filteredVideos.map((video) => (
           <div key={video.id} className="bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8">
             <mux-player
               stream-type="on-demand"
