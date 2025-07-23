@@ -11,9 +11,17 @@ const GET_BASE_PAGE = gql`
 `;
 
 export default async function BasePage() {
-  const { data } = await client.query({
-    query: GET_BASE_PAGE,
-  });
+  let data;
+
+  try {
+    const result = await client.query({
+      query: GET_BASE_PAGE,
+    });
+    data = result?.data;
+  } catch (err) {
+    console.error('GraphQL query failed:', err);
+    return <div>Failed to load page</div>;
+  }
 
   const page = data?.pageBy;
 
