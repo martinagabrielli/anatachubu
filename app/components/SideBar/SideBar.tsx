@@ -1,10 +1,9 @@
 import Link from "next/link";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import Logo from "../Logo/Logo";
-
 interface SideBarProps {
-    onClick: () => void;
-    menu: boolean;
+  onClick: () => void;
+  menu: string;
 }
 
 export default function SideBar({onClick, menu}: SideBarProps) {
