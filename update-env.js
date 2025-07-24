@@ -40,4 +40,10 @@ async function updateEnv() {
   await ngrok.kill();
 }
 
-updateEnv().catch(console.error);
+updateEnv()
+  .then(() => process.exit(0))
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+

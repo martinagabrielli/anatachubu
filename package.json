@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "start:ngrok": "node update-env.js && next dev"
+    "start:ngrok": "node update-env.js && npm run dev"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
@@ -17,6 +17,7 @@
     "graphql": "^16.9.0",
     "next": "^14.2.15",
     "next-auth": "^4.24.8",
+    "ngrok": "^5.0.0-beta.2",
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.80.3"
