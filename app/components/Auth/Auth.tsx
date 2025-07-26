@@ -6,11 +6,11 @@ export default function Auth() {
     return (
         <div className="auth">
             {!session ? (
-                <button onClick={() => signIn('google')}>Sign In with Google</button>
+                <button className="cursor-pointer" onClick={() => signIn('google')}>Sign In with Google</button>
             ) : (
                 <div>
                 <p>Welcome, {session.user?.name}</p>
-                <button onClick={() => signOut()}>Sign Out</button>
+                <button className="cursor-pointer" onClick={() => signOut()}>Sign Out</button>
                 </div>
             )}
         </div>

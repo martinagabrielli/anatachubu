@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import Banner from './components/Banner/Banner';
 import Videos from './components/Videos/Videos';
 import { useEffect, useState } from 'react';
+import Spinner from './components/Spinner/Spinner';
 interface Video {
   id: string;
   title: string;
@@ -50,7 +51,7 @@ export default function Home() {
         {isLoggedIn && (
           <>
             <h1 className="mb-8">Videos</h1>
-            {loading && <div className="text-center text-3xl mt-10">Loading videos...</div>}
+            {loading && <Spinner />}
             {error && <p>{error}</p>}
             {!loading && !error && <Videos videos={videos} />}
           </>

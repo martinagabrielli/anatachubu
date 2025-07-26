@@ -18,6 +18,7 @@ export default function Header({onSearch}: HeaderProps) {
   const menuClass = menu ? "translate-x-0" : "-translate-x-110";
 
   return (
+    <>
     <div className={`${styles.header} relative flex items-center justify-between p-4`}>
         <div className="flex items-center gap-x-4">
             <div className={styles.burgerMenu}>
@@ -25,9 +26,11 @@ export default function Header({onSearch}: HeaderProps) {
             </div>
             <Logo />
         </div>
-        <SearchBar onSearch={onSearch} />
+        <SearchBar className="hidden md:block w-[300px]" onSearch={onSearch} />
         <SideBar onClick={handleMenuToggle} menu={menuClass} />
         <Auth />
     </div>
+      <SearchBar className="w-[calc(100%_-_40px)] md:hidden mx-auto mb-8" onSearch={onSearch} />
+    </>
   )
 }

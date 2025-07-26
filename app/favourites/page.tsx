@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import FavouriteButton from "../components/FavouriteButton/FavouriteButton";
 import '@mux/mux-player';
 import Header from "../components/Header/Header";
+import Spinner from "../components/Spinner/Spinner";
 interface Video {
   id: string;
   title: string;
@@ -95,7 +96,7 @@ export default function FavouritesPage() {
     );
   } else if (loading) {
     content = (
-      <div className="text-3xl text-center mt-10">Loading your favourites...</div>
+      <Spinner />
     );
   } else if (favouriteVideos.length === 0) {
     content = (

@@ -3,9 +3,10 @@ import styles from './searchbar.module.scss';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
+  className?: string;
 }
 
-export default function SearchBar({ onSearch }: SearchBarProps) {
+export default function SearchBar({ onSearch, className = '' }: SearchBarProps) {
   const [input, setInput] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,15 +16,17 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
   };
 
   return (
-    <form className={styles.searchBar}>
-      <input
-        type="search"
-        value={input}
-        onChange={handleInputChange}
-        placeholder="Search..."
-        aria-label="Search"
-      />
-      <button className={styles.searchBar__button} type="submit"><div></div></button>
+    <form className={`${styles.searchBar} ${className}`}>
+      <div className={`${styles.searchBar__inner}`}>
+        <input
+          type="search"
+          value={input}
+          onChange={handleInputChange}
+          placeholder="Search..."
+          aria-label="Search"
+        />
+        <button className={styles.searchBar__button} type="submit"><div></div></button>
+      </div>
     </form>
   );
 }
