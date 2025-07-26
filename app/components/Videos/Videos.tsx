@@ -28,19 +28,21 @@ export default function Videos({ videos }: VideosProps) {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {videos.map((video) => (
           <>
-          <div key={video.id} className="video-card aspect-video bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8">
-            <mux-player
-              id={video.id}
-              stream-type="on-demand"
-              playback-id={video.playbackId}
-              poster={`https://image.mux.com/${video.playbackId}/thumbnail.jpg`}
-              controls
-              primary-color="#fff"
-              title={video.title}
-              style={{ width: '100%', height: '100%' }}
-            ></mux-player>
-              <h3 className="text-lg font-semibold mb-2 pt-5">{video.title}</h3>
-              <FavouriteButton videoId={video.playbackId} />
+          <div key={video.id} className="video-card bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8">
+            <div className="aspect-video">
+              <mux-player
+                id={video.id}
+                stream-type="on-demand"
+                playback-id={video.playbackId}
+                poster={`https://image.mux.com/${video.playbackId}/thumbnail.jpg`}
+                controls
+                primary-color="#fff"
+                title={video.title}
+                style={{ width: '100%', height: '100%' }}
+              ></mux-player>
+            </div>
+            <h3 className="text-lg font-semibold mb-2 pt-5">{video.title}</h3>
+            <FavouriteButton videoId={video.playbackId} />
           </div>
           </>
         ))}
@@ -48,3 +50,4 @@ export default function Videos({ videos }: VideosProps) {
     </div>
   );
 }
+g
