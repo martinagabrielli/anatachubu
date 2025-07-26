@@ -80,30 +80,37 @@ export default function FavouritesPage() {
   
     fetchFavourites();
   }, [session]);
-  
-
-  if (loading) {
-    return <div className="text-center mt-10">Loading your favourites...</div>;
-  }
-
-  if (status !== "authenticated") {
-    return <div className="text-center mt-10">You must be signed in to view your favourites.</div>;
-  }
-
-  if (favouriteVideos.length === 0) {
-    return <div className="text-center mt-10">No favourites yet. Go love some videos! ❤️</div>;
-  }
 
   const filteredVideos = favouriteVideos.filter((video) =>
     video.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  
+  let content;
 
-  return (
-    <>
-      <Header onSearch={setSearchQuery} />
+  if (status !== "authenticated") {
+    content = (
+      <div className="text-center mt-10">
+        You must be signed in to view your favourites.
+      </div>
+    );
+  } else if (loading) {
+    content = (
+      <div className="text-center mt-10">Loading your favourites...</div>
+    );
+  } else if (favouriteVideos.length === 0) {
+    content = (
+      <div className="text-center mt-10">
+        No favourites yet. Go love some videos! ❤️
+      </div>
+    );
+  } else {
+    content = (
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         {filteredVideos.map((video) => (
-          <div key={video.id} className="bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8">
+          <div
+            key={video.id}
+            className="bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8"
+          >
             <mux-player
               stream-type="on-demand"
               playback-id={video.video_id}
@@ -118,6 +125,13 @@ export default function FavouritesPage() {
           </div>
         ))}
       </div>
+    );
+  }
+
+  return (
+    <>
+      <Header onSearch={setSearchQuery} />
+      {content}
     </>
   );
 }
