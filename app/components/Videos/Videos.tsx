@@ -37,7 +37,7 @@ export default function Videos({ videos }: VideosProps) {
               controls
               primary-color="#fff"
               title={video.title}
-              style={{ width: '100%', height: 'auto' }}
+              style={{ width: '100%', height: '100%' }}
             ></mux-player>
               <h3 className="text-lg font-semibold mb-2 pt-5">{video.title}</h3>
               <FavouriteButton videoId={video.playbackId} />
