@@ -84,28 +84,28 @@ export default function FavouritesPage() {
   const filteredVideos = favouriteVideos.filter((video) =>
     video.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  
+
   let content;
 
   if (status !== "authenticated") {
     content = (
-      <div className="text-center mt-10">
+      <div className="text-3xl text-center mt-10">
         You must be signed in to view your favourites.
       </div>
     );
   } else if (loading) {
     content = (
-      <div className="text-center mt-10">Loading your favourites...</div>
+      <div className="text-3xl text-center mt-10">Loading your favourites...</div>
     );
   } else if (favouriteVideos.length === 0) {
     content = (
-      <div className="text-center mt-10">
+      <p className="text-3xl text-center mt-10">
         No favourites yet. Go love some videos! ❤️
-      </div>
+      </p>
     );
   } else {
     content = (
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {filteredVideos.map((video) => (
           <div
             key={video.id}
@@ -129,9 +129,12 @@ export default function FavouritesPage() {
   }
 
   return (
-    <>
+    <div>
       <Header onSearch={setSearchQuery} />
-      {content}
-    </>
+      <div className="favourites px-8">
+        <h1 className="mb-8">Favourites</h1>
+        {content}
+      </div>
+    </div>
   );
 }

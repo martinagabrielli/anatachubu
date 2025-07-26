@@ -17,8 +17,8 @@ interface VideosProps {
 export default function Videos({ videos }: VideosProps) {
   if (!videos || videos.length === 0) {
     return (
-      <div className="no-videos text-center py-30">
-          <p className="text-4xl">No videos were found. Please search for another term.</p>
+      <div className="no-videos text-center py-10">
+          <p className="text-3xl">Sorry, there are no videos available at the moment. Come back later.</p>
       </div>
     );
   }

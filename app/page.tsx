@@ -29,7 +29,6 @@ export default function Home() {
         }
         const data = await response.json();
         setVideos(data.videos);
-        console.log('Other fucking data here:', data.videos)
       } catch (err) {
         console.error('Failed to fetch videos:', err);
         setError('Failed to load videos.');
@@ -44,16 +43,19 @@ export default function Home() {
   }, [isLoggedIn, searchQuery]);
 
   return (
-    <div className="home">
+    <div>
       <Header onSearch={setSearchQuery} />
-      {!isLoggedIn && <Banner />}
-      {isLoggedIn && (
-        <>
-          {loading && <p>Loading videos...</p>}
-          {error && <p>{error}</p>}
-          {!loading && !error && <Videos videos={videos} />}
-        </>
-      )}
+      <div className="home px-8">
+        {!isLoggedIn && <Banner />}
+        {isLoggedIn && (
+          <>
+            <h1 className="mb-8">Videos</h1>
+            {loading && <div className="text-center text-3xl mt-10">Loading videos...</div>}
+            {error && <p>{error}</p>}
+            {!loading && !error && <Videos videos={videos} />}
+          </>
+        )}
+      </div>
     </div>
   );
 }
