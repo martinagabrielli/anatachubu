@@ -50,4 +50,3 @@ export default function Videos({ videos }: VideosProps) {
     </div>
   );
 }
-g
