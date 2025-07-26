@@ -24,8 +24,8 @@ export default function Videos({ videos }: VideosProps) {
   }
 
   return (
-    <div className={`${styles.videos} mx-auto`}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
+    <div className="videos mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {videos.map((video) => (
           <>
           <div key={video.id} className="video-card bg-background border-foreground border-2 rounded-2xl shadow overflow-hidden p-8">
