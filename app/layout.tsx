@@ -6,6 +6,7 @@ import "./globals.css";
 import './scss/index.scss';
 import "./scss/base/_globals.scss";
 import { SessionProvider } from 'next-auth/react';
+import Footer from "./components/Footer/Footer";
 const roboto = Roboto({
   weight: ['400', '700'],
   subsets: ['latin'],
@@ -27,9 +28,7 @@ export default function RootLayout({
             </SessionProvider>
           </div>
         </div>
-        <footer className="text-center">
-          This is the footer
-        </footer>
+        <Footer />
       </body>
     </html>
   );
