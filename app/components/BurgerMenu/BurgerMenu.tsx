@@ -1,11 +1,11 @@
 import styles from './burgermenu.module.scss';
 
-export default function BurgerMenu({onClick}: { onClick: () => void }) {
+export default function BurgerMenu({onClick, expanded}: { onClick: () => void, expanded: boolean }) {
   return (
-    <div onClick={onClick} className={styles.burgerMenu}>
+    <button onClick={onClick} className={styles.burgerMenu} aria-label="Toggle menu" aria-expanded={expanded}>
         <span></span>
         <span></span>
         <span></span>
-    </div>
+    </button>
   )
 }
