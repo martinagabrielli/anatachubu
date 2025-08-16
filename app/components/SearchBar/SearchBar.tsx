@@ -25,7 +25,7 @@ export default function SearchBar({ onSearch, className = '' }: SearchBarProps) 
           placeholder="Search..."
           aria-label="Search"
         />
-        <button className={styles.searchBar__button} type="submit"><div></div></button>
+        <button className={styles.searchBar__button} type="submit" aria-label="Search"><div></div></button>
       </div>
     </form>
   );

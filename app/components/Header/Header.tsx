@@ -22,7 +22,7 @@ export default function Header({onSearch}: HeaderProps) {
     <div className={`${styles.header} relative flex items-center justify-between p-4`}>
         <div className="flex items-center gap-x-4">
             <div className={styles.burgerMenu}>
-                <BurgerMenu onClick={handleMenuToggle} />
+                <BurgerMenu onClick={handleMenuToggle} expanded={menu} />
             </div>
             <Logo />
         </div>

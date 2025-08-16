@@ -56,7 +56,7 @@ export default function FavouriteButton({ videoId }: FavouriteButtonProps) {
   };
   
   return (
-    <button onClick={handleFavourite}>
+    <button onClick={handleFavourite} aria-label={isFavourited ? "Remove from favourites" : "Add to favourites"}>
       {isFavourited ? "❤️" : "🤍"}
     </button>
   );
